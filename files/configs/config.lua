@@ -31,5 +31,6 @@ Config.Webhooks = {
   ['whitelistPlayer'] = 'https://discord.com/api/webhooks/', -- WEBHOOK
   ['whitelistPreApproval'] = 'https://discord.com/api/webhooks/', -- WEBHOOK
   ['whitelistRequest'] = 'https://discord.com/api/webhooks/', -- WEBHOOK
-  ['configChanged'] = 'https://discord.com/api/webhooks/' -- WEBHOOK
+  ['configChanged'] = 'https://discord.com/api/webhooks/', -- WEBHOOK
+  ['ingameMenu'] = 'https://discord.com/api/webhooks/' -- WEBHOOK
 }
