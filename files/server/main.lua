@@ -24,8 +24,8 @@ end
 
 AddEventHandler('txAdmin:events:healedPlayer', function(data)
   if data.id ~= -1 then
-    SendToDiscord('playerHealed', 'txAdmin Healed Player', '`Id: ['.. data.id ..'] was Healed`', {
-      { name = 'Message:', value = '```Id: '.. data.id ..' was Healed```' }
+    SendToDiscord('playerHealed', 'txAdmin Healed Player', '`Player '.. GetPlayerName(data.id) ..' - ['.. data.id ..'] was Healed`', {
+      { name = 'Message:', value = '```Player: '.. GetPlayerName(data.id) ..' - ['.. data.id ..'] was Healed```' }
     })
   else
     SendToDiscord('playerHealed', 'txAdmin Healed Everyone', '`Everyone was Healed`', {
@@ -118,5 +118,21 @@ end)
 AddEventHandler('txAdmin:events:configChanged', function(data)
   SendToDiscord('configChanged', 'txAdmin Config Changed', '`txAdmin Config has been Changed`', {
     { name = 'Message:', value = '```txAdmin Config has been Changed```' },
+  })
+end)
+
+AddEventHandler('txsv:logger:menuEvent', function(player, action, allow, args)
+  local argsString = ''
+
+  if type(args) == 'table' then
+    argsString = json.encode(args)
+  else
+    argsString = tostring(args)
+  end
+
+  SendToDiscord('ingameMenu', 'txAdmin Ingame Menu Actions', '`'.. GetPlayerName(player) ..' - ['.. player ..'] has performed ingame menu actions`', {
+    { name = 'Ingame Admin Name:', value = '```'.. GetPlayerName(player) ..' - ['.. player ..']```' },
+    { name = 'Action:', value = '```'.. action ..' - '.. argsString ..'```' },
+    { name = 'Allow:', value = '```'.. tostring(allow) ..'```' }
   })
 end)
